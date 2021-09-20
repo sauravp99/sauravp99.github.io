@@ -130,6 +130,10 @@ input, select, textarea {
 				font-size: 14pt;
 			}
 
+			/* p {
+				font-size: 0.6vw;
+			} */
+
 		}
 
 		@media screen and (max-width: 1280px) {
@@ -137,7 +141,6 @@ input, select, textarea {
 			body, input, select, textarea {
 				font-size: 12pt;
 			}
-
 		}
 
 		@media screen and (max-width: 360px) {
@@ -145,6 +148,7 @@ input, select, textarea {
 			body, input, select, textarea {
 				font-size: 11pt;
 			}
+		
 
 		}
 
@@ -229,6 +233,8 @@ input, select, textarea {
 		h3 {
 			font-size: 1.25em;
 		}
+
+	
 
 	}
 
@@ -2841,7 +2847,7 @@ input, select, textarea {
 			}
 
 			.tiles article:nth-child(6n - 5):before {
-				background-color: #59d6ff;
+				background-color: #54eec0e8;
 			}
 
 			.tiles article:nth-child(6n - 4):before {
@@ -2928,6 +2934,173 @@ input, select, textarea {
 		.contact-method h3 {
 			margin: 0 0 0.5em 0;
 		}
+		
+		/* EDIT */
+		
+		.middle {
+			width: 60%; 
+			margin: auto; 
+			text-align: justify;
+
+		}
+		.statement {
+			font-size: 1.5vw;
+			margin: auto;
+			text-align: left;
+			width: 60%;
+		}
+		/* Centers the heading */
+		.inner > .centr {
+			/* background-color: red; */
+			text-align: center;
+			width: 100%;
+		}
+		
+		.inner > .centr > h1::after{
+			display: none;
+			/* margin: 2; */
+		}
+		.inner > .centr > * {
+			margin: 2%;
+		}
+
+		.slideshow-container {
+			max-width: 1000px;
+			position: relative;
+			padding: 2%;
+		  }
+		  
+		  /* Hide the images by default */
+		  .mySlides {
+			display: none;
+		  }
+
+		  .sec {
+			  text-align: center;
+			  /* width: 50%; */
+			  margin: auto;
+		  }
+		  
+		  /* Next & previous buttons */
+		  .prev, .next {
+			cursor: pointer;
+			/* position: absolute; */
+			top: 50%;
+			width: auto;
+			margin-top: -22px;
+			padding: 16px;
+			color: white;
+			border: #242943;
+			font-weight: bold;
+			font-size: 30px;
+			transition: 0.6s ease;
+			border-radius: 0 3px 3px 0;
+			user-select: none;
+		  }
+		  
+		  /* Position the "next button" to the right */
+		  .next {
+			right: 0;
+			border-radius: 3px 0 0 3px;
+		  }
+		  
+		  /* On hover, add a black background color with a little bit see-through */
+		  .prev:hover, .next:hover {
+			background-color: rgba(0,0,0,0.8);
+		  }
+		  
+		  /* Caption text */
+		  .text {
+			color: #f2f2f2;
+			font-size: 15px;
+			padding: 8px 12px;
+			position: absolute;
+			bottom: 8px;
+			width: 100%;
+			text-align: center;
+		  }
+		  
+		  /* Number text (1/3 etc) */
+		  .numbertext {
+			color: #f2f2f2;
+			font-size: 22px;
+			padding: 8px 12px;
+			/* position: absolute; */
+			margin-bottom: 2%;
+			top: 0;
+		  }
+
+		  
+		.attribute {
+			border: solid 0.1em;
+			border-radius: 2em;
+			padding: 1% 3% 1% 3%;
+			margin: 0% 2% 0% 2%;
+			font-size: 20px;
+			display: inline;
+			font-weight: 700;
+		}
+		#red {
+			background-color: rgb(185, 8, 8);
+		}
+		#blue {
+			background-color: #4965a8;
+		}
+		#purple {
+			background-color:blueviolet;
+			/* color: black; */
+		}
+
+		#orange{
+			background-color: orange;
+			color: black;
+			border-color: white;
+
+		}
+		
+		#gold {
+			background-color: #4965a8;
+			display: block;
+			width: 60%;
+			text-align: center;
+			margin: auto;
+			margin-bottom: 2%;
+		}
+		  /* The dots/bullets/indicators */
+		  .dot {
+			cursor: pointer;
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbb;
+			border-radius: 50%;
+			display: inline-block;
+			transition: background-color 0.6s ease;
+		  }
+		  
+		  .active, .dot:hover {
+			background-color: #717171;
+		  }
+		  
+		  /* Fading animation */
+		  /* .fade {
+			-webkit-animation-name: fade;
+			-webkit-animation-duration: 1.5s;
+			animation-name: fade;
+			animation-duration: 1.5s;
+		  }
+		  
+		  @-webkit-keyframes fade {
+			from {opacity: .1}
+			to {opacity: 1}
+		  }
+		  
+		  @keyframes fade {
+			from {opacity: .1}
+			to {opacity: 1}
+		  } */
+		  
+		  /* EDIT */
 
 /* Spotlights */
 
@@ -2949,6 +3122,7 @@ input, select, textarea {
 			-ms-flex-direction: row;
 			flex-direction: row;
 			background-color: #2e3450;
+			/* border: solid salmon 0.1em; */
 		}
 
 			.spotlights > section > .image {
@@ -2957,13 +3131,14 @@ input, select, textarea {
 				border-radius: 0;
 				display: block;
 				position: relative;
-				width: 30%;
+				width: 70%;
 			}
 
 				.spotlights > section > .image img {
 					border-radius: 0;
 					display: block;
 					width: 100%;
+					padding: 2%;
 				}
 
 				.spotlights > section > .image:before {
@@ -2978,9 +3153,10 @@ input, select, textarea {
 					width: 100%;
 				}
 
+			
 			.spotlights > section > .content {
 				display: -moz-flex;
-				display: -webkit-flex;
+				display: -webkit-flex;	
 				display: -ms-flex;
 				display: flex;
 				-moz-flex-direction: column;
@@ -2995,16 +3171,20 @@ input, select, textarea {
 				-webkit-align-items: center;
 				-ms-align-items: center;
 				align-items: center;
-				padding: 2em 3em 0.1em 3em ;
-				width: 70%;
+				padding: 2em 3em 0.1em 1em ;
+				width: 100%;
 			}
-
-				.spotlights > section > .content > .inner {
-					margin: 0 auto;
-					max-width: 100%;
-					width: 65em;
-					line-height: 30pt;
-				}
+			
+			.spotlights > section > .content > .inner {
+				margin: 0 auto;
+				max-width: 100%;
+				width: 40em;
+				font-size: 1vw;
+				line-height: 40pt;
+			}
+			.inner {
+				width: 100%;
+			}
 
 			.spotlights > section:nth-child(2n) {
 				-moz-flex-direction: row-reverse;
@@ -3031,6 +3211,7 @@ input, select, textarea {
 				width: 60%;
 			}
 
+
 		}
 
 		@media screen and (max-width: 1280px) {
@@ -3042,6 +3223,7 @@ input, select, textarea {
 			.spotlights > section > .content {
 				width: 55%;
 			}
+
 
 		}
 
@@ -3060,16 +3242,40 @@ input, select, textarea {
 					width: 100%;
 				}
 
+
 		}
 
 		@media screen and (max-width: 736px) {
 
 			.spotlights > section > .content {
 				padding: 3em 1.5em 1em 1.5em ;
+				line-height: 30pt;
+			}
+
+			.spotlights > section > .content > .inner {
+				line-height: 10pt;
+				/* font-size: 1vw; */
 			}
 
 		}
 
+		.thumbnail {
+			margin: 0% 5% 0% 5%;
+		}
+		.r {
+			margin: 0% 1% 0% 1%;
+		}
+
+		.thumbnail:hover {
+			position:relative;
+			top:-25px;
+			left:-35px;
+			/* width:500px; */
+			width: 100%;
+			height:auto;
+			display:block;
+			z-index:999;
+		}
 /* Header */
 
 	@-moz-keyframes reveal-header {
@@ -3580,6 +3786,7 @@ input, select, textarea {
 				}
 
 		}
+
 
 		@media screen and (max-width: 480px) {
 
