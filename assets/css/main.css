@@ -3271,7 +3271,9 @@ input, select, textarea {
 			top:-25px;
 			left:-35px;
 			/* width:500px; */
-			width: 100%;
+			
+			/* TODO: MUST CHANGE WITH MEDIA QUERY*/
+			width: 100%; 
 			height:auto;
 			display:block;
 			z-index:999;
