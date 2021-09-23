@@ -2584,7 +2584,7 @@ input, select, textarea {
 		input[type="button"].fit,
 		button.fit,
 		.button.fit {
-			width: 100%;
+			width: 30%;
 		}
 
 		input[type="submit"].small,
@@ -2936,7 +2936,13 @@ input, select, textarea {
 		}
 		
 		/* EDIT */
-		
+
+
+		.scrollable {
+			height: 150px; /* or any value */
+			overflow-y: auto;
+		}
+
 		.middle {
 			width: 60%; 
 			margin: auto; 
@@ -3271,7 +3277,7 @@ input, select, textarea {
 			top:-25px;
 			left:-35px;
 			/* width:500px; */
-			
+
 			/* TODO: MUST CHANGE WITH MEDIA QUERY*/
 			width: 100%; 
 			height:auto;

@@ -363,3 +363,26 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+// var same = null;
+// var qSelect = false
+
+
+function initiateSlide(e) {
+	$(e).slideUp(); 
+}
+	// var x = document.getElementById("hideClass");
+	// if (x.style.display === "none") {
+	// 	x.style.display = "block";
+	// } else {
+	// 	x.style.display = "none";
+	// }
+
+// }   // if($(e).is(same) || qSelect == false){
+        // same = $(e);
+        // qSelect = !qSelect; 
+		
+        // 
+    // }
+// }
+
