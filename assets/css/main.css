@@ -2213,7 +2213,7 @@ input, select, textarea {
 		}
 
 			.image.main img {
-				width: 100%;
+				width: 60%;
 			}
 
 			@media screen and (max-width: 736px) {
