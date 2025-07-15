@@ -3,6 +3,8 @@
 :root {
 	--background: #ffffff;
 	--foreground: #171717;
+	--primary: #073f3d;
+	--secondary: #fff4e2;
 }
 
 @theme inline {
@@ -15,8 +17,8 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
+		/* --background: #073f3d; */
+		--foreground: #fff4e2;
 	}
 }
 
@@ -24,4 +26,11 @@ body {
 	background: var(--background);
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-background {
+	background-image: url("/grain_texture_green.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
