@@ -34,3 +34,34 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+/* Slide animations for avatar transitions */
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-out-left {
+  animation: slideOutToLeft 300ms ease-in-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 300ms ease-in-out forwards;
+}

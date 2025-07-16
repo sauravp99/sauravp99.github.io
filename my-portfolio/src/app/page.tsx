@@ -1,106 +1,100 @@
 "use client";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import {IKeyword, KeywordText} from "./(home)/Keyword";
+import { useEffect, useState } from "react";
 
-// Define a type for the theme options
-type ThemeType = "default" | "code" | "design" | "art";
-
-// Custom hook for theme management
-function useThemeManager() {
-  const [activeTheme, setActiveTheme] = useState<ThemeType>("default");
-  
-  const getBackgroundClass = useCallback(() => {
-    switch (activeTheme) {
-      case "code": return "bg-red-900";
-      case "design": return "bg-blue-900";
-      case "art": return "bg-green-900";
-      default: return "bg-[var(--primary)]";
-    }
-  }, [activeTheme]);
-  
-  return {
-    activeTheme,
-    setTheme: setActiveTheme,
-    resetTheme: () => setActiveTheme("default"),
-    backgroundClass: getBackgroundClass()
-  };
-}
-
-// Keyword component for better reusability
-function Keyword({ 
-  type, 
-  children, 
-  onHover 
-}: { 
-  type: ThemeType; 
-  children: React.ReactNode; 
-  onHover: (type: ThemeType) => void;
-}) {
-  const colorClass = {
-    code: "hover:text-red-300",
-    design: "hover:text-blue-300",
-    art: "hover:text-green-300",
-    default: ""
-  }[type];
-
-  return (
-    <span
-      className={`${colorClass} underline transition-colors duration-300 inline cursor-pointer`}
-      onMouseEnter={() => onHover(type)}
-      onMouseLeave={() => onHover("default")}
-    >
-      {children}
-    </span>
-  );
-}
 
 export default function Home() {
-  const { backgroundClass, setTheme } = useThemeManager();
+
+	const [activeKeyword, setActiveKeyword] = useState<IKeyword>({
+		type: "default",
+		action: "hover"
+	  });
+	  
+	  const getBackgroundClass = () => {
+		console.log("Getting background class for ", activeKeyword.type);
+		switch (activeKeyword.type) {
+		  case "code": return "bg-red-900";
+		  case "design": return "bg-blue-900";
+		  case "art": return "bg-green-900";
+		  case "default":
+		  default: return "bg-[var(--primary)]";
+		}
+	  };
+	  
+	  // Track the current and previous images for smooth transitions
+	  const [currentImage, setCurrentImage] = useState("/avatar_hello.svg");
+	  const [prevImage, setPrevImage] = useState("");
+	  const [isTransitioning, setIsTransitioning] = useState(false);
+	  
+	  // Update images when activeKeyword changes
+	  useEffect(() => {
+	    // Get the new image based on keyword
+	    let newImage = "/avatar_hello.svg";
+	    switch (activeKeyword.type) {
+	      case "code": newImage = "/avatar_code.svg"; break;
+	      case "design": newImage = "/avatar_code.svg"; break;
+	      case "art": newImage = "/avatar_art.svg"; break;
+	    }
+	    
+	    // Don't transition on initial render or if image hasn't changed
+	    if (prevImage === "" || newImage === currentImage) {
+	      setCurrentImage(newImage);
+	      setPrevImage(newImage);
+	      return;
+	    }
+	    
+	    // Start transition
+	    setIsTransitioning(true);
+	    setPrevImage(currentImage);
+	    setCurrentImage(newImage);
+	    
+	    // Reset transition flag after animation completes
+	    const timer = setTimeout(() => {
+	      setIsTransitioning(false);
+	    }, 500); // Match this with your CSS animation duration
+	    
+	    return () => clearTimeout(timer);
+	  }, [activeKeyword.type]);
 
   return (
     <div
-      className={`flex flex-col h-full justify-between ${backgroundClass} px-8 lg:px-32 transition-colors duration-300`}
+      className={`flex flex-col h-full justify-between ${getBackgroundClass()} px-8 lg:px-32 transition-colors duration-300`}
     >
       <main className="flex flex-col gap-16 h-full text-4xl lg:text-6xl text-center justify-center items-center sm:text-left font-[family-name:var(--font-cherry-bomb-one)]">
         <p>Hi! I am Saurav</p>
-        <Image
-          aria-hidden
-          src="/avatar_hello.svg"
-          alt="Illustation of an avatar waving"
-          className="lg:w-96 lg:h-96"
-          width={300}
-          height={300}
-        />
+        <div className="relative lg:w-96 lg:h-96 w-[300px] h-[300px] overflow-hidden">
+          {/* Previous image that slides out to the left */}
+          {isTransitioning && (
+            <Image
+              aria-hidden
+              src={prevImage}
+              alt="Previous avatar illustration"
+              className={`absolute inset-0 slide-out-left`}
+              width={300}
+              height={300}
+            />
+          )}
+          
+          {/* Current image that slides in from the right */}
+          <Image
+            aria-hidden
+            src={currentImage}
+            alt="Avatar illustration"
+            className={`absolute inset-0 ${isTransitioning ? 'slide-in-right' : ''}`}
+            width={300}
+            height={300}
+            priority
+          />
+        </div>
         <p className="cursor-default">
           I love to{" "}
-          <Keyword type="code" onHover={setTheme}>code</Keyword>,{" "}
-          <Keyword type="design" onHover={setTheme}>design</Keyword>
-          , and make{" "}
-          <Keyword type="art" onHover={setTheme}>art!</Keyword>
+          <KeywordText keywordType="code" setActiveKeyword={setActiveKeyword}/>{", "}
+          <KeywordText keywordType="design" setActiveKeyword={setActiveKeyword}/>{", "}
+          and make{" "}
+          <KeywordText keywordType="art" setActiveKeyword={setActiveKeyword}/>{"!"}
         </p>
       </main>
-      {/* <footer className="text-2xl text-[var(--primary)] justify-between flex flex-row w-full lg:justify-center lg:items-center lg:gap-64 gap-8">
-        <section className="bg-[var(--secondary)] border-b-16 border-red-400 flex gap-4 justify-center rounded-t-xl w-full py-2 lg:px-16 lg:py-8 items-center lg:w-fit hover:underline hover:underline-offset-4">
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Projects
-        </section>
-        <section className="bg-[var(--secondary)] flex gap-4 border-b-16 border-blue-400 justify-center rounded-t-xl w-full py-2 lg:px-16 lg:py-8 items-center lg:w-fit hover:underline hover:underline-offset-4">
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Art
-        </section>
-      </footer> */}
     </div>
   );
 }
