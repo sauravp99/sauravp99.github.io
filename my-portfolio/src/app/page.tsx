@@ -1,94 +1,106 @@
+"use client";
 import Image from "next/image";
+import { useCallback, useState } from "react";
+
+// Define a type for the theme options
+type ThemeType = "default" | "code" | "design" | "art";
+
+// Custom hook for theme management
+function useThemeManager() {
+  const [activeTheme, setActiveTheme] = useState<ThemeType>("default");
+  
+  const getBackgroundClass = useCallback(() => {
+    switch (activeTheme) {
+      case "code": return "bg-red-900";
+      case "design": return "bg-blue-900";
+      case "art": return "bg-green-900";
+      default: return "bg-[var(--primary)]";
+    }
+  }, [activeTheme]);
+  
+  return {
+    activeTheme,
+    setTheme: setActiveTheme,
+    resetTheme: () => setActiveTheme("default"),
+    backgroundClass: getBackgroundClass()
+  };
+}
+
+// Keyword component for better reusability
+function Keyword({ 
+  type, 
+  children, 
+  onHover 
+}: { 
+  type: ThemeType; 
+  children: React.ReactNode; 
+  onHover: (type: ThemeType) => void;
+}) {
+  const colorClass = {
+    code: "hover:text-red-300",
+    design: "hover:text-blue-300",
+    art: "hover:text-green-300",
+    default: ""
+  }[type];
+
+  return (
+    <span
+      className={`${colorClass} underline transition-colors duration-300 inline cursor-pointer`}
+      onMouseEnter={() => onHover(type)}
+      onMouseLeave={() => onHover("default")}
+    >
+      {children}
+    </span>
+  );
+}
 
 export default function Home() {
-	return (
-		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image
-					className="dark:invert"
-					src="/next.svg"
-					alt="Next.js logo"
-					width={180}
-					height={38}
-					priority
-				/>
-				<ol className="text-6xl text-center sm:text-left font-[family-name:var(--font-cherry-bomb-one)]">
-					Hi! I am Saurav I love to code and make art!
-				</ol>
+  const { backgroundClass, setTheme } = useThemeManager();
 
-				<div className="flex gap-4 items-center flex-row">
-					<a
-						className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image
-							className="dark:invert"
-							src="/vercel.svg"
-							alt="Vercel logomark"
-							width={20}
-							height={20}
-						/>
-						Deploy now
-					</a>
-					<a
-						className="rounded-full border-amber-700 border border-solid transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Read our docs
-					</a>
-				</div>
-			</main>
-			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/file.svg"
-						alt="File icon"
-						width={16}
-						height={16}
-					/>
-					Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/window.svg"
-						alt="Window icon"
-						width={16}
-						height={16}
-					/>
-					Examples
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/globe.svg"
-						alt="Globe icon"
-						width={16}
-						height={16}
-					/>
-					Go to nextjs.org →
-				</a>
-			</footer>
-		</div>
-	);
+  return (
+    <div
+      className={`flex flex-col h-full justify-between ${backgroundClass} px-8 lg:px-32 transition-colors duration-300`}
+    >
+      <main className="flex flex-col gap-16 h-full text-4xl lg:text-6xl text-center justify-center items-center sm:text-left font-[family-name:var(--font-cherry-bomb-one)]">
+        <p>Hi! I am Saurav</p>
+        <Image
+          aria-hidden
+          src="/avatar_hello.svg"
+          alt="Illustation of an avatar waving"
+          className="lg:w-96 lg:h-96"
+          width={300}
+          height={300}
+        />
+        <p className="cursor-default">
+          I love to{" "}
+          <Keyword type="code" onHover={setTheme}>code</Keyword>,{" "}
+          <Keyword type="design" onHover={setTheme}>design</Keyword>
+          , and make{" "}
+          <Keyword type="art" onHover={setTheme}>art!</Keyword>
+        </p>
+      </main>
+      {/* <footer className="text-2xl text-[var(--primary)] justify-between flex flex-row w-full lg:justify-center lg:items-center lg:gap-64 gap-8">
+        <section className="bg-[var(--secondary)] border-b-16 border-red-400 flex gap-4 justify-center rounded-t-xl w-full py-2 lg:px-16 lg:py-8 items-center lg:w-fit hover:underline hover:underline-offset-4">
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Projects
+        </section>
+        <section className="bg-[var(--secondary)] flex gap-4 border-b-16 border-blue-400 justify-center rounded-t-xl w-full py-2 lg:px-16 lg:py-8 items-center lg:w-fit hover:underline hover:underline-offset-4">
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Art
+        </section>
+      </footer> */}
+    </div>
+  );
 }
