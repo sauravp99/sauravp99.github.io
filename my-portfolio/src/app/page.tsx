@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import {IKeyword, KeywordText} from "./(home)/Keyword";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -22,66 +23,18 @@ export default function Home() {
 		}
 	  };
 	  
-	  // Track the current and previous images for smooth transitions
-	  const [currentImage, setCurrentImage] = useState("/avatar_hello.svg");
-	  const [prevImage, setPrevImage] = useState("");
-	  const [isTransitioning, setIsTransitioning] = useState(false);
-	  
-	  // Update images when activeKeyword changes
-	  useEffect(() => {
-	    // Get the new image based on keyword
-	    let newImage = "/avatar_hello.svg";
-	    switch (activeKeyword.type) {
-	      case "code": newImage = "/avatar_code.svg"; break;
-	      case "design": newImage = "/avatar_code.svg"; break;
-	      case "art": newImage = "/avatar_art.svg"; break;
-	    }
-	    
-	    // Don't transition on initial render or if image hasn't changed
-	    if (prevImage === "" || newImage === currentImage) {
-	      setCurrentImage(newImage);
-	      setPrevImage(newImage);
-	      return;
-	    }
-	    
-	    // Start transition
-	    setIsTransitioning(true);
-	    setPrevImage(currentImage);
-	    setCurrentImage(newImage);
-	    
-	    // Reset transition flag after animation completes
-	    const timer = setTimeout(() => {
-	      setIsTransitioning(false);
-	    }, 500); // Match this with your CSS animation duration
-	    
-	    return () => clearTimeout(timer);
-	  }, [activeKeyword.type]);
-
   return (
     <div
-      className={`flex flex-col h-full justify-between ${getBackgroundClass()} px-8 lg:px-32 transition-colors duration-300`}
+      className={`flex flex-col h-full justify-between bg-[var(--primary)] px-8 lg:px-32 transition-colors duration-300`}
     >
-      <main className="flex flex-col gap-16 h-full text-4xl lg:text-6xl text-center justify-center items-center sm:text-left font-[family-name:var(--font-cherry-bomb-one)]">
-        <p>Hi! I am Saurav</p>
-        <div className="relative lg:w-96 lg:h-96 w-[300px] h-[300px] overflow-hidden">
-          {/* Previous image that slides out to the left */}
-          {isTransitioning && (
-            <Image
-              aria-hidden
-              src={prevImage}
-              alt="Previous avatar illustration"
-              className={`absolute inset-0 slide-out-left`}
-              width={300}
-              height={300}
-            />
-          )}
-          
-          {/* Current image that slides in from the right */}
+      <main className="flex flex-col gap-16 h-full text-center justify-center items-center sm:text-left font-[family-name:var(--font-cherry-bomb-one)]">
+        <p className="lg:text-5xl text-3xl">Hi! I am Saurav</p>
+        <div className="relative text-2xl lg:text-4xl lg:w-96 lg:h-96 w-[300px] h-[300px] overflow-hidden">
           <Image
             aria-hidden
-            src={currentImage}
+            src="/avatar_hello.svg"
             alt="Avatar illustration"
-            className={`absolute inset-0 ${isTransitioning ? 'slide-in-right' : ''}`}
+            className={`absolute inset-0`}
             width={300}
             height={300}
             priority
@@ -94,6 +47,10 @@ export default function Home() {
           and make{" "}
           <KeywordText keywordType="art" setActiveKeyword={setActiveKeyword}/>{"!"}
         </p>
+		<p className="text-2xl">
+		welcome to my portfolio
+		</p>
+		<Link href="/code">{"->"}</Link>
       </main>
     </div>
   );
