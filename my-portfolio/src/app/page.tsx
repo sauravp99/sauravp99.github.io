@@ -20,6 +20,8 @@ export default function Home() {
           className="lg:w-[400px] lg:h-[400px] w-[300px] h-[300px]"
           width={300}
           height={300}
+          onMouseEnter={() => setIsKeywordsHighlighted(true)}
+          onMouseLeave={() => setIsKeywordsHighlighted(false)}
           priority
         />
         <p className="cursor-default [&_span]:transition-colors lg:text-5xl text-3xl [&_span]:duration-300 font-[family-name:var(--font-cherry-bomb-one)]">
@@ -53,9 +55,10 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center mt-6">
         <p className="text-2xl mb-2 font-[family-name:var(--font-cherry-bomb-one)]">
-          welcome to my portfolio
+          welcome to my portfolio!
         </p>
-        <Link
+        <p className="text-xl text-center mt-2 italic">Content coming soon</p>
+        {/* <Link
           href="/work"
           className="text-4xl transition-transform hover:translate-x-2"
         >
@@ -65,7 +68,7 @@ export default function Home() {
           >
             {"->"}
           </span>
-        </Link>
+        </Link> */}
       </div>
     </main>
   );

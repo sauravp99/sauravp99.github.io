@@ -11,18 +11,18 @@ export default function Code() {
       {/* <InspoPage/> */}
       <BackgroundShapes />
       <div className="flex flex-row justify-between">
-        <CategoryButtonGroup />
-        <button
+        {/* <CategoryButtonGroup /> */}
+        {/* <button
           type="button"
           className="lg:px-4 lg:py-2 py-2 cursor-pointer text-md font-bold px-4 hover:border-[var(--primary)] border-[var(--secondary)] border-1 transition-all duration-200 text-[var(--primary)] w-fit rounded-md"
         >
           Arts
-        </button>
+        </button> */}
       </div>
       <div className="flex flex-col lg:gap-32 gap-16">
         <Client />
-        <Academic />
-        <Hobby />
+        {/* <Academic />
+        <Hobby /> */}
       </div>
     </main>
   );

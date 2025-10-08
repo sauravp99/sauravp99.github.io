@@ -33,7 +33,9 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} ${cherryBombOne.variable} antialiased h-dvh`}
 			>
-				<div className="pt-6 pr-8 md:pt-8 md:pr-12 lg:text-xl justify-end flex text-[var(--secondary)] bg-[var(--primary)]">About me</div>
+				<div className="pt-6 min-h-8 pr-8 md:pt-8 md:pr-12 lg:text-xl justify-end flex text-[var(--secondary)] bg-[var(--primary)]">
+					<p className="opacity-0">About me</p>
+				</div>	
 				{children}
 			</body>
 		</html>
