@@ -22,7 +22,7 @@ export const ProjectCard = ({ project, imageStyling, className }: Props) => {
         isHovered ? "translate-y-[-8px]" : "translate-y-0"
       } flex justify-center border-b-[0.5rem] lg:border-b-[1rem] hover:border-[0.3rem] hover:rounded-2xl  ${
         colorTheme?.border
-      } bg-white transition-all rounded-2xl min-h-[300px] max-w-[300px] lg:max-w-[900px] lg:min-w-[400px] lg:min-h-[600px] w-full cursor-pointer ${className}`}
+      } bg-white transition-all rounded-2xl min-h-[300px] max-w-[300px] lg:max-w-[900px] lg:min-w-[400px] lg:min-h-[600px] w-full h-full cursor-pointer ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -36,7 +36,7 @@ export const ProjectCard = ({ project, imageStyling, className }: Props) => {
           priority
         />
       </div>
-      <div
+        <div
         className={`p-6 ${
           isHovered ? "opacity-100" : "opacity-0"
         } absolute bottom-0 transition-opacity duration-200 ease-in-out left-0 w-full ${
@@ -49,7 +49,7 @@ export const ProjectCard = ({ project, imageStyling, className }: Props) => {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className={`bg-white text-[var(--secondary)] text-xs px-2 py-1 rounded-full`}
+              className={`bg-white text-[var(--primary)] text-xs px-2 py-1 rounded-full`}
             >
               {tag}
             </span>
