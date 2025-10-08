@@ -6,8 +6,6 @@ interface Props {
   id: string
   title: string;
   description: string;
-  roles: string[];
-  tags: string[];
   techStack?: string[];
   image: string;
 }
@@ -28,7 +26,7 @@ function ComingSoonOverlay() {
   );
 }
 
-export function HeroCarousel({ id, title, description, roles, tags, techStack, image }: Props) {
+export function HeroCarousel({ id, title, description, techStack, image }: Props) {
   const goTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {

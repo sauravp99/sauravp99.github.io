@@ -1,9 +1,7 @@
 "use client";
 import { BackgroundShapes } from "./BackgroundShapes";
 import { Client } from "./category/client";
-import { Academic } from "./category/academic";
-import { Hobby } from "./category/hobby";
-import { CategoryButtonGroup } from "./category/categoryButtonGroup";
+
 
 export default function Code() {
   return (

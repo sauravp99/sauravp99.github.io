@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Project } from "../projectsData";
 import Image from "next/image";
 interface Props {

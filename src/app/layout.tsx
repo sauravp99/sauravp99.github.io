@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-const cherryBombOne = Cherry_Bomb_One({
+const cherryBombOne = Cherry_Bomb_One({ 
 	variable: "--font-cherry-bomb-one",
 	subsets: ["latin"],
 	weight: "400",

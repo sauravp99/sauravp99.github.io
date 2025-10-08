@@ -1,7 +1,4 @@
-import { ProjectCard } from "./projectCard";
-import { projects } from "../projectsData";
-import Link from "next/link";
-import { HeroCarousel } from "../[...slug]/Carousel";
+
 
 export const Client = () => {
   return (
